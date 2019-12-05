@@ -20,30 +20,31 @@ impl KakaoLocal {
         let url = format!("{}/v2/local/search/address.json", self.host);
 
         let client = reqwest::Client::new();
-        let output = client.get(&url)
+        let response = client.get(&url)
             .headers(self.cred.authorization_header()?)
             .query(input)
-            .send()?
-            .json::<LocalSearchAddressOutput>()?;
+            .send()?;
 
-        println!("{:#?}", output);
+        let output = response.error_for_status()
+            .and_then(|mut r| r.json::<LocalSearchAddressOutput>())?;
 
         Ok(output)
     }
 }
 
-//#[cfg(test)]
-//mod tests {
-//    use super::*;
-//
-//    #[test]
-//    fn test_search_address() -> Result<(), failure::Error> {
-//        let client = KakaoLocal::new(&KakaoCred::new(""));
-//        let res = client.search_address(&LocalSearchAddressInput {
-//            query: "전북 삼성동 100".to_string(),
-//            ..Default::default()
-//        })?;
-//
-//        Ok(())
-//    }
-//}
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_search_address() -> Result<(), failure::Error> {
+        let api_key = dotenv::var("KAKAO_REST_API_KEY")?;
+        let client = KakaoLocal::new(&KakaoCred::new(&api_key));
+        let res = client.search_address(&LocalSearchAddressInput {
+            query: "전북 삼성로 100".to_string(),
+            ..Default::default()
+        })?;
+
+        Ok(())
+    }
+}
