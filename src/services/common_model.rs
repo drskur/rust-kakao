@@ -1,8 +1,8 @@
 use serde::{Serialize, Deserialize};
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Meta {
-    total_count: i32,
-    pageable_count: Option<i32>,
-    is_end: Option<bool>
+    pub total_count: i32,
+    pub pageable_count: Option<i32>,
+    pub is_end: Option<bool>
 }

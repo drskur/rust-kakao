@@ -8,40 +8,49 @@ pub struct LocalSearchAddressInput {
     pub size: Option<i32>
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Default, Debug, Serialize, Deserialize)]
+pub struct LocalGeoCoordToRegionCodeInput {
+    pub x: f64,
+    pub y: f64,
+    pub input_coord: Option<String>,
+    pub output_coord: Option<String>,
+    pub lang: Option<String>
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LocalSearchAddressDocumentAddress {
-    address_name: String,
-    region_1depth_name: String,
-    region_2depth_name: String,
-    region_3depth_name: String,
-    region_3depth_h_name: String,
-    h_code: String,
-    b_code: String,
-    mountain_yn: String,
-    main_address_no: String,
-    sub_address_no: String,
-    zip_code: String,
-    x: String,
-    y: String
+    pub address_name: String,
+    pub region_1depth_name: String,
+    pub region_2depth_name: String,
+    pub region_3depth_name: String,
+    pub region_3depth_h_name: String,
+    pub h_code: String,
+    pub b_code: String,
+    pub mountain_yn: String,
+    pub main_address_no: String,
+    pub sub_address_no: String,
+    pub zip_code: String,
+    pub x: String,
+    pub y: String
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LocalSearchAddressDocumentRoadAddress {
-    address_name: String,
-    region_1depth_name: String,
-    region_2depth_name: String,
-    region_3depth_name: String,
-    road_name: String,
-    underground_yn: String,
-    main_building_no: String,
-    sub_building_no: String,
-    building_name: String,
-    zone_no: String,
-    x: String,
-    y: String
+    pub address_name: String,
+    pub region_1depth_name: String,
+    pub region_2depth_name: String,
+    pub region_3depth_name: String,
+    pub road_name: String,
+    pub underground_yn: String,
+    pub main_building_no: String,
+    pub sub_building_no: String,
+    pub building_name: String,
+    pub zone_no: String,
+    pub x: String,
+    pub y: String
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LocalSearchAddressDocument {
     pub address_name: String,
     pub y: String,
@@ -51,8 +60,28 @@ pub struct LocalSearchAddressDocument {
     pub road_address: Option<LocalSearchAddressDocumentRoadAddress>
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LocalSearchAddressOutput {
     pub meta: Meta,
     pub documents: Vec<LocalSearchAddressDocument>
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct LocalGeoCoordToRegionCodeOutput {
+    pub meta: Meta,
+    pub documents: Vec<LocalGeoCoordToRegionCodeDocument>
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct LocalGeoCoordToRegionCodeDocument {
+    pub region_type: String,
+    pub address_name: String,
+    pub region_1depth_name: String,
+    pub region_2depth_name: String,
+    pub region_3depth_name: String,
+    pub region_4depth_name: String,
+    pub code: String,
+    // KAKAO의 실수로 보임. API에 따라 자료형이 다른 경우가 있음.
+    pub x: f64,
+    pub y: f64
 }
