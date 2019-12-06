@@ -11,13 +11,15 @@ kakao = { git = "https://github.com/rabyss/rust-kakao.git" }
 
 ## Usage
 ```rust
-    let api_key = "your kakao rest api key"
+    let api_key = "your kakao rest api key";
     let client = KakaoLocal::new(&KakaoCred::new(&api_key));
     let output = client.search_address(&LocalSearchAddressInput {
-        query: "전북 삼성로 100".to_string(),
+        query: "전북 삼성동 100".to_string(),
         ..Default::default()
     })?;
 ```
+
+> refer src/services/{service_name}/tests.rs for more examples. 
 
 ## API coverages
 

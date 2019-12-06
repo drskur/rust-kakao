@@ -17,6 +17,13 @@ pub struct LocalGeoCoordToRegionCodeInput {
     pub lang: Option<String>
 }
 
+#[derive(Default, Debug, Serialize, Deserialize)]
+pub struct LocalGeoCoordToAddressInput {
+    pub x: f64,
+    pub y: f64,
+    pub input_coord: Option<String>
+}
+
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LocalSearchAddressDocumentAddress {
     pub address_name: String,
@@ -84,4 +91,41 @@ pub struct LocalGeoCoordToRegionCodeDocument {
     // KAKAO의 실수로 보임. API에 따라 자료형이 다른 경우가 있음.
     pub x: f64,
     pub y: f64
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct LocalGeoCoordToAddressDocumentAddress {
+    pub address_name: String,
+    pub region_1depth_name: String,
+    pub region_2depth_name: String,
+    pub region_3depth_name: String,
+    pub main_address_no: String,
+    pub sub_address_no: String,
+    pub zip_code: String
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct LocalGeoCoordToAddressDocumentRoadAddress {
+    pub address_name: String,
+    pub region_1depth_name: String,
+    pub region_2depth_name: String,
+    pub region_3depth_name: String,
+    pub road_name: String,
+    pub underground_yn: String,
+    pub main_building_no: String,
+    pub sub_building_no: String,
+    pub building_name: String,
+    pub zone_no: String
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct LocalGeoCoordToAddressDocument {
+    pub address: Option<LocalGeoCoordToAddressDocumentAddress>,
+    pub road_address: Option<LocalGeoCoordToAddressDocumentRoadAddress>
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct LocalGeoCoordToAddressOutput {
+    pub meta: Meta,
+    pub documents: Vec<LocalGeoCoordToAddressDocument>
 }
