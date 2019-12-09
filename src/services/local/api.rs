@@ -27,5 +27,10 @@ impl KakaoLocal {
         let api = "v2/local/geo/coord2address.json";
         self.service.call_api(api, input)
     }
+
+    pub fn geo_trans_coord(&self, input: &LocalGeoTranscoordInput) -> Result<LocalGeoTranscoordOutput, failure::Error> {
+        let api = "v2/local/geo/transcoord.json";
+        self.service.call_api(api, input)
+    }
 }
 
