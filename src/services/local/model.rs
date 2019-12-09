@@ -24,6 +24,14 @@ pub struct LocalGeoCoordToAddressInput {
     pub input_coord: Option<String>
 }
 
+#[derive(Default, Debug, Serialize, Deserialize)]
+pub struct LocalGeoTranscoordInput {
+    pub x: f64,
+    pub y: f64,
+    pub input_coord: Option<String>,
+    pub output_coord: Option<String>
+}
+
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LocalSearchAddressDocumentAddress {
     pub address_name: String,
@@ -128,4 +136,16 @@ pub struct LocalGeoCoordToAddressDocument {
 pub struct LocalGeoCoordToAddressOutput {
     pub meta: Meta,
     pub documents: Vec<LocalGeoCoordToAddressDocument>
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct LocalGeoTranscoordDocument {
+    pub x: f64,
+    pub y: f64
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct LocalGeoTranscoordOutput {
+    pub meta: Meta,
+    pub documents: Vec<LocalGeoTranscoordDocument>
 }

@@ -45,3 +45,19 @@ fn test_geo_coord_to_address() -> Result<(), failure::Error> {
 
     Ok(())
 }
+
+#[test]
+fn test_geo_trans_coord() -> Result<(), failure::Error> {
+    let api_key = dotenv::var("KAKAO_REST_API_KEY")?;
+    let client = KakaoLocal::new(&KakaoCred::new(&api_key));
+    let res = client.geo_trans_coord(&LocalGeoTranscoordInput {
+        x: 160710.37729270622,
+        y: -4388.879299157299,
+        input_coord: Some("WTM".to_string()),
+        output_coord: Some("WGS84".to_string())
+    })?;
+
+    println!("{:#?}", res);
+
+    Ok(())
+}
