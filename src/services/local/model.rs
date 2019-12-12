@@ -45,6 +45,18 @@ pub struct LocalSearchKeywordInput {
     pub sort: Option<i32>
 }
 
+#[derive(Default, Debug, Serialize, Deserialize)]
+pub struct LocalSearchCategoryInput {
+    pub category_group_code: String,
+    pub x: Option<String>,
+    pub y: Option<String>,
+    pub radius: Option<i32>,
+    pub rect: Option<String>,
+    pub page: Option<i32>,
+    pub size: Option<i32>,
+    pub sort: Option<i32>
+}
+
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LocalSearchAddressDocumentAddress {
     pub address_name: String,
@@ -171,6 +183,28 @@ pub struct LocalSearchKeywordOutput {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct LocalSearchKeywordDocument {
+    pub id: String,
+    pub place_name: String,
+    pub category_name: String,
+    pub category_group_code: String,
+    pub category_group_name: String,
+    pub phone: String,
+    pub address_name: String,
+    pub road_address_name: String,
+    pub x: String,
+    pub y: String,
+    pub place_url: String,
+    pub distance: String
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct LocalSearchCategoryOutput {
+    pub meta: Meta,
+    pub documents: Vec<LocalSearchCategoryDocument>
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct LocalSearchCategoryDocument {
     pub id: String,
     pub place_name: String,
     pub category_name: String,

@@ -29,7 +29,7 @@ kakao = { git = "https://github.com/rabyss/rust-kakao.git" }
 - [ ] [KakaoStory](https://developers.kakao.com/docs/restapi/kakaostory-api)
 - [ ] [PushNotification](https://developers.kakao.com/docs/restapi/push-notification)
 - [ ] [Search](https://developers.kakao.com/docs/restapi/search)
-- [ ] [Local](https://developers.kakao.com/docs/restapi/local)
+- [X] [Local](https://developers.kakao.com/docs/restapi/local)
 - [ ] [Vision](https://developers.kakao.com/docs/restapi/vision)
 - [ ] [Translation](https://developers.kakao.com/docs/restapi/translation)
 - [ ] [Speech](https://developers.kakao.com/docs/restapi/speech)

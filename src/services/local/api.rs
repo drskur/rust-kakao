@@ -37,5 +37,10 @@ impl KakaoLocal {
         let api = "v2/local/search/keyword.json";
         self.service.get(api, input)
     }
+
+    pub fn search_category(&self, input: &LocalSearchCategoryInput) -> Result<LocalSearchCategoryOutput, failure::Error> {
+        let api = "v2/local/search/category.json";
+        self.service.get(api, input)
+    }
 }
 

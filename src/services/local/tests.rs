@@ -78,3 +78,18 @@ fn test_search_keyword() -> Result<(), failure::Error> {
 
     Ok(())
 }
+
+#[test]
+fn test_search_category() -> Result<(), failure::Error> {
+    let api_key = dotenv::var("KAKAO_REST_API_KEY")?;
+    let client = KakaoLocal::new(&KakaoCred::new(&api_key));
+    let res = client.search_category(&LocalSearchCategoryInput {
+        category_group_code: "PM9".to_string(),
+        rect: Some(String::from("127.0561466,37.5058277,127.0602340,37.5142554")),
+        ..Default::default()
+    })?;
+
+    println!("{:#?}", res);
+
+    Ok(())
+}
