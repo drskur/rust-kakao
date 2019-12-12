@@ -61,3 +61,20 @@ fn test_geo_trans_coord() -> Result<(), failure::Error> {
 
     Ok(())
 }
+
+#[test]
+fn test_search_keyword() -> Result<(), failure::Error> {
+    let api_key = dotenv::var("KAKAO_REST_API_KEY")?;
+    let client = KakaoLocal::new(&KakaoCred::new(&api_key));
+    let res = client.search_keyword(&LocalSearchKeywordInput {
+        query: "카카오프렌즈".to_string(),
+        x: Some(String::from("127.06283102249932")),
+        y: Some(String::from("37.514322572335935")),
+        radius: Some(20000),
+        ..Default::default()
+    })?;
+
+    println!("{:#?}", res);
+
+    Ok(())
+}

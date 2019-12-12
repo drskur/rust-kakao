@@ -20,7 +20,7 @@ impl KakaoService {
         }
     }
 
-    pub fn call_api<Input: Serialize, Output: DeserializeOwned>(&self, api_path: &str, input: &Input) -> Result<Output, failure::Error>{
+    pub fn get<Input: Serialize, Output: DeserializeOwned>(&self, api_path: &str, input: &Input) -> Result<Output, failure::Error>{
         let url = format!("{}/{}", self.host, api_path);
 
         let client = reqwest::Client::new();
